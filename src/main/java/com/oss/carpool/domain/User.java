@@ -15,23 +15,24 @@ public class User {
 	private Long id;
 	private String userId;
 	private String password;
+	private Integer studentNumber;
 	
-//	@OneToMany
+
+	//	@OneToMany
 //	private List<Post> posts;
 //	@OneToMany
 //	private List<Review> reviews;
 	private Integer mileage;
 	
+	public User() {};
 	
-	public User(Long id, String userId, String password, List<Post> posts, List<Review> reviews, Integer mileage) {
-		super();
-		this.id = id;
+	public User(String userId, String password, Integer studentNumber) {
 		this.userId = userId;
 		this.password = password;
-//		this.posts = posts;
-//		this.reviews = reviews;
-		this.mileage = mileage;
+		this.studentNumber = studentNumber;
+		mileage = 0;
 	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -49,6 +50,14 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public Integer getStudentNumber() {
+		return studentNumber;
+	}
+
+	public void setStudentNumber(Integer studentNumber) {
+		this.studentNumber = studentNumber;
 	}
 //	public List<Post> getPosts() {
 //		return posts;

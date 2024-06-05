@@ -7,5 +7,5 @@ import com.oss.carpool.domain.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
-	
+	public User findByUserId(String userId);
 }
