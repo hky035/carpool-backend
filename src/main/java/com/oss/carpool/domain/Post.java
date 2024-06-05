@@ -1,15 +1,17 @@
 package com.oss.carpool.domain;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@RequiredArgsConstructor
 public class Post {
 	@Id
 	@GeneratedValue
@@ -19,50 +21,4 @@ public class Post {
 	private User author;
 	private String title;
 	private String description;
-	private LocalDateTime date;
-	
-	public Post(User author, String title, String description, LocalDateTime date) {
-		this.author = author;
-		this.title = title;
-		this.description = description;
-		this.date = date;
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public User getAuthor() {
-		return author;
-	}
-	public void setAuthor(User author) {
-		this.author = author;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public LocalDateTime getDate() {
-		return date;
-	}
-	public void setDate(LocalDateTime date) {
-		this.date = date;
-	}
-	@Override
-	public String toString() {
-		return "Post [id=" + id + ", author=" + author + ", title=" + title + ", description=" + description + ", date="
-				+ date + "]";
-	}
-	
-	
 }
