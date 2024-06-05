@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.oss.carpool.domain.Test;
 import com.oss.carpool.domain.User;
 import com.oss.carpool.dto.LoginRequestDTO;
+import com.oss.carpool.dto.LoginResponseDTO;
 import com.oss.carpool.dto.RegisterRequestDTO;
 import com.oss.carpool.service.UserService;
 
@@ -39,7 +39,7 @@ public class LoginController {
 	}
 	
 	@PostMapping("api/login")
-	public boolean login(@RequestBody LoginRequestDTO dto) {
+	public LoginResponseDTO login(@RequestBody LoginRequestDTO dto) {
 		return userService.login(dto);
 	}
 	

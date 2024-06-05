@@ -1,6 +1,7 @@
 package com.oss.carpool.domain;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
-//@Entity
+@Entity
 public class Post {
 	@Id
 	@GeneratedValue
@@ -18,11 +19,9 @@ public class Post {
 	private User author;
 	private String title;
 	private String description;
-	private LocalDate date;
+	private LocalDateTime date;
 	
-	public Post(Long id, User author, String title, String description, LocalDate date) {
-		super();
-		this.id = id;
+	public Post(User author, String title, String description, LocalDateTime date) {
 		this.author = author;
 		this.title = title;
 		this.description = description;
@@ -53,10 +52,10 @@ public class Post {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public LocalDate getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
-	public void setDate(LocalDate date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 	@Override

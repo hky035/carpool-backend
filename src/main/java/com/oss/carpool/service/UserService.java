@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.oss.carpool.domain.User;
 import com.oss.carpool.dto.LoginRequestDTO;
+import com.oss.carpool.dto.LoginResponseDTO;
 import com.oss.carpool.dto.RegisterRequestDTO;
 import com.oss.carpool.repository.UserRepository;
 
@@ -19,20 +20,31 @@ public class UserService {
 	
 	public User register(RegisterRequestDTO dto) {
 		User user = new User(dto.getUserId(), dto.getPassword(), dto.getStudentNumber());
-		return userRepository.save(user);
+		if(userRepository.findByUserId(dto.getUserId()) == null) {
+			return userRepository.save(user);
+		}
+		else {
+			System.out.println("중복");
+			return null;
+		}
 	}
 	
-	public boolean login(LoginRequestDTO dto) {
+	public LoginResponseDTO login(LoginRequestDTO dto) {
+		System.out.println(dto.getPassword());
 		User user = userRepository.findByUserId(dto.getUserId());
-		if(user == null)
-			return false;
-		else {
-			if(user.getUserId().equals(dto.getUserId())) {
-				if(user.getPassword().equals(dto.getPassword()))
-					return true;
+		LoginResponseDTO resDto = new LoginResponseDTO();
+		if(user != null) {
+			System.out.println(user.getPassword());
+			if(user.getPassword().equals(dto.getPassword())) {
+				resDto.setUserId(user.getUserId());
+				resDto.setStudentNumber(user.getStudentNumber());
+				return resDto;
+			}
+			else {
+				return null;
 			}
 		}
-		return false;
-		
+		else
+			return null;
 	}
 }
