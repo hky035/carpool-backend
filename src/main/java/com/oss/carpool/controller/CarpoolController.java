@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.oss.carpool.domain.Carpool;
 import com.oss.carpool.service.CarpoolService;
 
-import jakarta.websocket.server.PathParam;
-
 @RestController
 public class CarpoolController {
 	private CarpoolService carpoolService;
