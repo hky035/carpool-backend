@@ -1,4 +1,6 @@
 INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user1', 'password1', 123456, 0);
+INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user2', 'password2', 123457, 0);
+INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user3', 'password2', 123458, 0);
 
 
 INSERT INTO post (author_id, title, description) VALUES (1, '카풀 서비스 거리 확대 요청', '카풀 서비스 이용 가능 거리가 확대되었으면 좋겠습니다.');
@@ -16,3 +18,7 @@ INSERT INTO mileage_item (title, description, price) VALUES ('도서관 예약�
 INSERT INTO mileage_item (title, description, price) VALUES ('주차할인권', '영남대학교 교내 주차장 할인권입니다.', '2000');
 
 INSERT INTO mileage_item (title, description, price) VALUES ('도서대출 연장권', '영남대학교 도서관 대출 일수 연장권입니다.', '1000');
+
+INSERT INTO carpool (departures, arrivals, provider_id) VALUES ('신매','영남',1);
+INSERT INTO carpool (departures, arrivals, provider_id) VALUES ('두류','영남',2);
+INSERT INTO carpool (departures, arrivals, provider_id) VALUES ('반월당','영남',3);
