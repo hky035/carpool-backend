@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oss.carpool.domain.Carpool;
 import com.oss.carpool.service.CarpoolService;
+
+import jakarta.websocket.server.PathParam;
 
 @RestController
 public class CarpoolController {
@@ -23,5 +26,9 @@ public class CarpoolController {
 		return carpoolService.getAllCarpool();	
 	}
 	
+	@GetMapping("/api/carpool/{id}")
+	public Carpool getCarpool(@PathVariable("id") Long id) {
+		return carpoolService.getCarpool(id);
+	}
 	
 }

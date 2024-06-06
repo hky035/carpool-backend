@@ -34,6 +34,11 @@ public class CarpoolService {
 		return carpoolRepository.findAll();
 	}
 	
+	public Carpool getCarpool(Long id) {
+		Carpool c = carpoolRepository.findById(id).orElse(null);
+		return c;
+	}
+	
 	
 	
 	
