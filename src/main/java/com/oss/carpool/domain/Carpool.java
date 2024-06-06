@@ -2,6 +2,8 @@ package com.oss.carpool.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -24,8 +26,9 @@ public class Carpool {
 	private String departures;
 	private String arrivals;
 	@OneToOne
-	@JoinColumn(name="provider_id")
 	@Nullable
+	@JoinColumn(name = "provider_id")
+	@JsonIgnore
 	private User provider;
 	@OneToMany(mappedBy = "useCarpool", fetch = FetchType.LAZY)
 	@Nullable
@@ -33,11 +36,10 @@ public class Carpool {
 	
 	
 	
-	public Carpool(String departures, String arrivals, User provider, List<User> users) {
+	public Carpool(String departures, String arrivals, User provider) {
 		this.departures = departures;
 		this.arrivals = arrivals;
 		this.provider = provider;
-		this.users = users;
 	}
 
 	public Carpool() {	};

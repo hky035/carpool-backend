@@ -2,6 +2,8 @@ package com.oss.carpool.domain;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.annotation.Nullable;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -30,18 +32,20 @@ public class User {
 	@Column(name="studentnumber")
 	private Integer studentNumber;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "provider")
 	@Nullable
-	@JoinColumn(name = "provide_carpool_id")
+	@JsonIgnore
 	private Carpool provideCarpool;
 	@ManyToOne
 	@Nullable
 	@JoinColumn(name = "use_carpool_id")
+	@JsonIgnore
 	private Carpool useCarpool;
 	
 
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Post> posts;
+	
 //	@OneToMany
 //	private List<Review> reviews;
 	private Integer mileage;

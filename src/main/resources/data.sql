@@ -19,6 +19,7 @@ INSERT INTO mileage_item (title, description, price) VALUES ('주차할인권', 
 
 INSERT INTO mileage_item (title, description, price) VALUES ('도서대출 연장권', '영남대학교 도서관 대출 일수 연장권입니다.', '1000');
 
+
 INSERT INTO carpool (departures, arrivals, provider_id) VALUES ('신매','영남',1);
 INSERT INTO carpool (departures, arrivals, provider_id) VALUES ('두류','영남',2);
 INSERT INTO carpool (departures, arrivals, provider_id) VALUES ('반월당','영남',3);
