@@ -36,6 +36,7 @@ public class UserService {
 		if(user != null) {
 			System.out.println(user.getPassword());
 			if(user.getPassword().equals(dto.getPassword())) {
+				resDto.setId(user.getId());
 				resDto.setUserId(user.getUserId());
 				resDto.setStudentNumber(user.getStudentNumber());
 				return resDto;

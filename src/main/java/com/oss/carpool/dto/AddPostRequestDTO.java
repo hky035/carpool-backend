@@ -7,10 +7,8 @@ import lombok.Setter;
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class LoginResponseDTO {
-	private Long id;
-	private String userId;
-	private Integer studentNumber;
-	
-	
+public class AddPostRequestDTO {
+	private String title;
+	private String description;
+	private Long userId;
 }

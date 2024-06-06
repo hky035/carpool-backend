@@ -2,6 +2,8 @@ package com.oss.carpool.domain;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,13 +15,15 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(name="userid")
 	private String userId;
 	private String password;
+	@Column(name="studentnumber")
 	private Integer studentNumber;
 	
 
-	//	@OneToMany
-//	private List<Post> posts;
+	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Post> posts;
 //	@OneToMany
 //	private List<Review> reviews;
 	private Integer mileage;
@@ -59,12 +63,12 @@ public class User {
 	public void setStudentNumber(Integer studentNumber) {
 		this.studentNumber = studentNumber;
 	}
-//	public List<Post> getPosts() {
-//		return posts;
-//	}
-//	public void setPosts(List<Post> posts) {
-//		this.posts = posts;
-//	}
+	public List<Post> getPosts() {
+		return posts;
+	}
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
 //	public List<Review> getReviews() {
 //		return reviews;
 //	}
