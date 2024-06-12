@@ -4,13 +4,12 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@Setter @Getter
+@Getter @Setter
 @RequiredArgsConstructor
-public class CarpoolResponseDTO {
-	private Long id;
+public class AddCarpoolRequestDTO {
+	private Long userId;
 	private String departures;
 	private String arrivals;
 	private String date;
-	private Long providerId;
-	private int users;
+	
 }
