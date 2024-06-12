@@ -1,16 +1,20 @@
 package com.oss.carpool.domain;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
@@ -25,14 +29,16 @@ public class Carpool {
 	private Long id;
 	private String departures;
 	private String arrivals;
+	private String date;
+	
 	@OneToOne
-	@Nullable
 	@JoinColumn(name = "provider_id")
 	@JsonIgnore
 	private User provider;
-	@OneToMany(mappedBy = "useCarpool", fetch = FetchType.LAZY)
-	@Nullable
-	private List<User> users;
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JsonIgnore
+	private List<User> users = new ArrayList<User>();
 	
 	
 	
@@ -42,5 +48,15 @@ public class Carpool {
 		this.provider = provider;
 	}
 
-	public Carpool() {	};
+	public Carpool() {	}
+
+	@Override
+	public String toString() {
+		return "Carpool [id=" + id + ", departures=" + departures + ", arrivals=" + arrivals + ", date=" + date
+				+ ", provider=" + provider + ", users=" + users + "]";
+	};
+	
+	public void addUser(User user) {
+		users.add(user);
+	}
 }
