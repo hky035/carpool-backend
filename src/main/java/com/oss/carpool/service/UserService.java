@@ -18,23 +18,11 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 	
-	public User register(RegisterRequestDTO dto) {
-		User user = new User(dto.getUserId(), dto.getPassword(), dto.getStudentNumber());
-		if(userRepository.findByUserId(dto.getUserId()) == null) {
-			return userRepository.save(user);
-		}
-		else {
-			System.out.println("중복");
-			return null;
-		}
-	}
-	
 	public LoginResponseDTO login(LoginRequestDTO dto) {
-		System.out.println(dto.getPassword());
 		User user = userRepository.findByUserId(dto.getUserId());
+		
 		LoginResponseDTO resDto = new LoginResponseDTO();
 		if(user != null) {
-			System.out.println(user.getPassword());
 			if(user.getPassword().equals(dto.getPassword())) {
 				resDto.setId(user.getId());
 				resDto.setUserId(user.getUserId());
@@ -48,4 +36,21 @@ public class UserService {
 		else
 			return null;
 	}
+	
+	public LoginResponseDTO register(RegisterRequestDTO dto) {
+		User user = new User(dto.getUserId(), dto.getPassword(), dto.getStudentNumber());
+		LoginResponseDTO res = new LoginResponseDTO();
+		
+		if(userRepository.findByUserId(dto.getUserId()) == null) {
+			userRepository.save(user);
+			
+			User newUser = userRepository.findByUserId(dto.getUserId());
+			res.setId(newUser.getId());
+			res.setUserId(newUser.getUserId());
+			res.setStudentNumber(newUser.getStudentNumber());
+		}
+		return res;
+	}
+	
+
 }
