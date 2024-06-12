@@ -33,11 +33,7 @@ public class LoginController {
 	}
 	
 	@PostMapping("api/register")
-	public boolean register(@RequestBody RegisterRequestDTO dto) {
-		User addUser = userService.register(dto);
-		if(addUser != null)
-			return true;
-		else
-			return false;
+	public LoginResponseDTO register(@RequestBody RegisterRequestDTO dto) {
+		return userService.register(dto);
 	}
 }
