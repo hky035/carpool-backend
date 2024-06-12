@@ -25,16 +25,7 @@ public class LoginController {
 	public LoginController(UserService userService) {
 		this.userService = userService;
 	}
-
-	@GetMapping("login")
-	public String login(Model model) {
-		return "Login successed";
-	}
 	
-	@GetMapping("api/test")
-	public String test(Model model) {
-		return "test completed";
-	}
 	
 	@PostMapping("api/login")
 	public LoginResponseDTO login(@RequestBody LoginRequestDTO dto) {
