@@ -32,7 +32,7 @@ public class MileageItemController {
 	
 	@PostMapping("/api/mileage-item/buy")
 	public BuyItemResponseDTO buyItem(@RequestBody BuyItemRequestDTO dto) {
-		return mileageItemService.buyItem(dto.getItemId(), dto.getUserId());
+		return mileageItemService.buyItem(dto);
 	}
 	
 	

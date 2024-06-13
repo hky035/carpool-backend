@@ -2,6 +2,7 @@ package com.oss.carpool.service;
 
 import java.util.List;
 
+import com.oss.carpool.dto.BuyItemRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,27 +27,27 @@ public class MileageItemService {
 		return mileageItemRepository.findAll();
 	}
 	
-	public BuyItemResponseDTO buyItem(Long itemId, Long userId) {
-		User user = userRepository.findById(userId).orElse(null);
-		MileageItem item = mileageItemRepository.findById(itemId).orElse(null);
+	public BuyItemResponseDTO buyItem(BuyItemRequestDTO dto) {
+		User user = userRepository.findById(dto.getUserId()).orElse(null);
+		MileageItem item = mileageItemRepository.findById(dto.getItemId()).orElse(null);
 
-		BuyItemResponseDTO dto = new BuyItemResponseDTO();
-		dto.setUserId(user.getUserId());
+		BuyItemResponseDTO res = new BuyItemResponseDTO();
+		res.setUserId(user.getUserId());
 		
 		if(user.getMileage() >=  item.getPrice()) {
 			user.setMileage(user.getMileage() - item.getPrice());
 			
-			dto.setChange(user.getMileage());
-			dto.setTitle(item.getTitle());
+			res.setChange(user.getMileage());
+			res.setTitle(item.getTitle());
 			
 			userRepository.save(user);
 		}
 		else {
-			dto.setTitle(item.getTitle());
-			dto.setChange(-1);
+			res.setTitle(item.getTitle());
+			res.setChange(-1);
 		}
 		
-		return dto;
+		return res;
 	}
 	
 }
