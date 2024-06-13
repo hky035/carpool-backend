@@ -11,5 +11,10 @@ public class AddCarpoolRequestDTO {
 	private String departures;
 	private String arrivals;
 	private String date;
+	@Override
+	public String toString() {
+		return "AddCarpoolRequestDTO [userId=" + userId + ", departures=" + departures + ", arrivals=" + arrivals
+				+ ", date=" + date + "]";
+	}
 	
 }

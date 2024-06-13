@@ -1,10 +1,10 @@
-INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user1', 'password1', 22000000, 0);
-INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user2', 'password2', 22000001, 0);
-INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user3', 'password3', 22000002, 0);
-INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user4', 'password4', 22000002, 0);
-INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user5', 'password5', 22000002, 0);
-INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user6', 'password6', 22000002, 0);
-INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user7', 'password7', 22000002, 0);
+INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user1', 'password1', 22000000, 1000);
+INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user2', 'password2', 22000001, 1000);
+INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user3', 'password3', 22000002, 1000);
+INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user4', 'password4', 22000002, 1000);
+INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user5', 'password5', 22000002, 1000);
+INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user6', 'password6', 22000002, 1000);
+INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('user7', 'password7', 22000002, 1000);
 INSERT INTO user_details (userId, password, studentNumber, mileage) VALUES ('test', 'test', 22012000, 30000);
 
 
@@ -29,3 +29,6 @@ INSERT INTO carpool (departures, arrivals, provider_id, date) VALUES ('신매역
 INSERT INTO carpool (departures, arrivals, provider_id, date) VALUES ('두류역','영남대',2, '6월 15일 10:00');
 INSERT INTO carpool (departures, arrivals, provider_id, date) VALUES ('반월당','경산 예비군 훈련장',3, '6월 1일 06:00');
 INSERT INTO carpool (departures, arrivals, provider_id, date) VALUES ('경산 예비군 훈련장','영남대',4, '6월 1일 17:00');
+INSERT INTO carpool (departures, arrivals, provider_id, date) VALUES ('영남대','동대구역',5, '6월 13일 14:00');
+INSERT INTO carpool (departures, arrivals, provider_id, date) VALUES ('영남대','라이온즈파크',6, '6월 3일 15:30');
+INSERT INTO carpool (departures, arrivals, provider_id, date) VALUES ('설화명곡역','경산 예비군 훈련장',7, '6월 30일 06:10');

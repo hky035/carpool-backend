@@ -13,4 +13,11 @@ public class CarpoolResponseDTO {
 	private String date;
 	private Long providerId;
 	private int users;
+	@Override
+	public String toString() {
+		return "CarpoolResponseDTO [id=" + id + ", departures=" + departures + ", arrivals=" + arrivals + ", date="
+				+ date + ", providerId=" + providerId + ", users=" + users + "]";
+	}
+	
+	
 }

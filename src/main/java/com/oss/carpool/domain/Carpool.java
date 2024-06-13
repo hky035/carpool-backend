@@ -42,10 +42,11 @@ public class Carpool {
 	
 	public Carpool() {	}
 	
-	public Carpool(String departures, String arrivals, User provider) {
+	public Carpool(String departures, String arrivals, User provider, String date) {
 		this.departures = departures;
 		this.arrivals = arrivals;
 		this.provider = provider;
+		this.date = date;
 	}
 	
 	public void addUser(User user) {

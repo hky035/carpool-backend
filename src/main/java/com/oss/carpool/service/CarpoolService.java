@@ -56,10 +56,11 @@ public class CarpoolService {
 
 	public CarpoolResponseDTO addCarpool(AddCarpoolRequestDTO dto) {
 		User provider = userRepository.findById(dto.getUserId()).orElse(null);
-		Carpool c = new Carpool(dto.getDepartures(), dto.getArrivals(), provider);
+		Carpool c = new Carpool(dto.getDepartures(), dto.getArrivals(), provider, dto.getDate());
 		CarpoolResponseDTO res = new CarpoolResponseDTO();
 
 		Carpool prev = carpoolRepository.findByProviderId(provider.getId());
+		
 		if(prev != null)
 			return res;
 		
