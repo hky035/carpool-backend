@@ -24,11 +24,11 @@ public class CarpoolService {
 		this.carpoolRepository = carpoolRepository;
 		this.userRepository = userRepository;
 	}
-	
-	public List<CarpoolResponseDTO> getAllCarpool(){
+
+	public List<CarpoolResponseDTO> getAllCarpool() {
 		List<Carpool> l = carpoolRepository.findAll();
 		List<CarpoolResponseDTO> res = new ArrayList<CarpoolResponseDTO>();
-		for(Carpool c : l) {
+		for (Carpool c : l) {
 			CarpoolResponseDTO dto = new CarpoolResponseDTO();
 			dto.setId(c.getId());
 			dto.setDepartures(c.getDepartures());
@@ -40,11 +40,11 @@ public class CarpoolService {
 		}
 		return res;
 	}
-	
+
 	public CarpoolResponseDTO getCarpool(Long id) {
 		Carpool c = carpoolRepository.findById(id).orElse(null);
 		CarpoolResponseDTO res = new CarpoolResponseDTO();
-		
+
 		res.setId(c.getId());
 		res.setDepartures(c.getDepartures());
 		res.setArrivals(c.getArrivals());
@@ -53,13 +53,17 @@ public class CarpoolService {
 		res.setUsers(c.getUsers().size());
 		return res;
 	}
-	
+
 	public CarpoolResponseDTO addCarpool(AddCarpoolRequestDTO dto) {
 		User provider = userRepository.findById(dto.getUserId()).orElse(null);
 		Carpool c = new Carpool(dto.getDepartures(), dto.getArrivals(), provider);
-		Carpool newCarpool = carpoolRepository.save(c);
 		CarpoolResponseDTO res = new CarpoolResponseDTO();
+
+		Carpool prev = carpoolRepository.findByProviderId(provider.getId());
+		if(prev != null)
+			return res;
 		
+		Carpool newCarpool = carpoolRepository.save(c);
 		res.setId(newCarpool.getId());
 		res.setDepartures(newCarpool.getDepartures());
 		res.setArrivals(newCarpool.getArrivals());
@@ -68,31 +72,35 @@ public class CarpoolService {
 		res.setUsers(newCarpool.getUsers().size());
 		return res;
 	}
-	
+
 	public CarpoolResponseDTO registerCarpool(RegisterCarpoolRequestDTO dto) {
 		Long carpoolId = dto.getCarpoolId();
 		Long userId = dto.getUserId();
+
+		CarpoolResponseDTO res = new CarpoolResponseDTO();
+		User user = userRepository.findById(userId).orElse(null);
+		System.out.println(user.getUseCarpool());
+		if(user.getUseCarpool() != null) {
+			System.out.println("res.getId() : " + res.getId());
+			return res;
+		}
 		
 		Carpool carpool = carpoolRepository.findById(carpoolId).orElse(null);
-		User user = userRepository.findById(userId).orElse(null);
-		
 		carpool.addUser(user);
 		user.setUseCarpool(carpool);
-		
-		CarpoolResponseDTO res = new CarpoolResponseDTO();
+
+
 		res.setId(carpool.getId());
 		res.setDepartures(carpool.getDepartures());
 		res.setArrivals(carpool.getArrivals());
 		res.setDate(carpool.getDate());
 		res.setProviderId(carpool.getProvider().getId());
 		res.setUsers(carpool.getUsers().size());
-		
+
 		userRepository.save(user);
 		carpoolRepository.save(carpool);
-		
+
 		return res;
 	}
-	
-	
-	
+
 }
