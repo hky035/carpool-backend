@@ -40,21 +40,13 @@ public class Carpool {
 	@JsonIgnore
 	private List<User> users = new ArrayList<User>();
 	
-	
+	public Carpool() {	}
 	
 	public Carpool(String departures, String arrivals, User provider) {
 		this.departures = departures;
 		this.arrivals = arrivals;
 		this.provider = provider;
 	}
-
-	public Carpool() {	}
-
-	@Override
-	public String toString() {
-		return "Carpool [id=" + id + ", departures=" + departures + ", arrivals=" + arrivals + ", date=" + date
-				+ ", provider=" + provider + ", users=" + users + "]";
-	};
 	
 	public void addUser(User user) {
 		users.add(user);
