@@ -7,5 +7,5 @@ import com.oss.carpool.domain.Carpool;
 
 @Repository
 public interface CarpoolRepository extends JpaRepository<Carpool, Long>{
-
+	public Carpool findByProviderId(Long providerId);
 }
