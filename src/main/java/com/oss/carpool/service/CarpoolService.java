@@ -27,7 +27,7 @@ public class CarpoolService {
 	
 	public List<CarpoolResponseDTO> getAllCarpool(){
 		List<Carpool> l = carpoolRepository.findAll();
-		List<CarpoolResponseDTO> result = new ArrayList<CarpoolResponseDTO>();
+		List<CarpoolResponseDTO> res = new ArrayList<CarpoolResponseDTO>();
 		for(Carpool c : l) {
 			CarpoolResponseDTO dto = new CarpoolResponseDTO();
 			dto.setId(c.getId());
@@ -36,28 +36,37 @@ public class CarpoolService {
 			dto.setDate(c.getDate());
 			dto.setProviderId(c.getProvider().getId());
 			dto.setUsers(c.getUsers().size());
-			result.add(dto);
+			res.add(dto);
 		}
-		return result;
+		return res;
 	}
 	
 	public CarpoolResponseDTO getCarpool(Long id) {
 		Carpool c = carpoolRepository.findById(id).orElse(null);
-		CarpoolResponseDTO dto = new CarpoolResponseDTO();
-		dto.setId(c.getId());
-		dto.setDepartures(c.getDepartures());
-		dto.setArrivals(c.getArrivals());
-		dto.setDate(c.getDate());
-		dto.setProviderId(c.getProvider().getId());
-		dto.setUsers(c.getUsers().size());
-		return dto;
+		CarpoolResponseDTO res = new CarpoolResponseDTO();
+		
+		res.setId(c.getId());
+		res.setDepartures(c.getDepartures());
+		res.setArrivals(c.getArrivals());
+		res.setDate(c.getDate());
+		res.setProviderId(c.getProvider().getId());
+		res.setUsers(c.getUsers().size());
+		return res;
 	}
 	
-	public Carpool addCarpool(AddCarpoolRequestDTO dto) {
+	public CarpoolResponseDTO addCarpool(AddCarpoolRequestDTO dto) {
 		User provider = userRepository.findById(dto.getUserId()).orElse(null);
 		Carpool c = new Carpool(dto.getDepartures(), dto.getArrivals(), provider);
+		Carpool newCarpool = carpoolRepository.save(c);
+		CarpoolResponseDTO res = new CarpoolResponseDTO();
 		
-		return carpoolRepository.save(c);
+		res.setId(newCarpool.getId());
+		res.setDepartures(newCarpool.getDepartures());
+		res.setArrivals(newCarpool.getArrivals());
+		res.setDate(newCarpool.getDate());
+		res.setProviderId(newCarpool.getProvider().getId());
+		res.setUsers(newCarpool.getUsers().size());
+		return res;
 	}
 	
 	public CarpoolResponseDTO registerCarpool(RegisterCarpoolRequestDTO dto) {
@@ -70,7 +79,6 @@ public class CarpoolService {
 		carpool.addUser(user);
 		user.setUseCarpool(carpool);
 		
-
 		CarpoolResponseDTO res = new CarpoolResponseDTO();
 		res.setId(carpool.getId());
 		res.setDepartures(carpool.getDepartures());

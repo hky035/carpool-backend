@@ -35,7 +35,7 @@ public class CarpoolController {
 	}
 	
 	@PostMapping("/api/carpool/add")
-	public Carpool addCarpool(@RequestBody AddCarpoolRequestDTO dto) {
+	public CarpoolResponseDTO addCarpool(@RequestBody AddCarpoolRequestDTO dto) {
 		return carpoolService.addCarpool(dto);
 	}
 	
