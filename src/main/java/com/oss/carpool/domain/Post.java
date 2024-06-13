@@ -26,8 +26,8 @@ public class Post {
 	private User author;
 	private String title;
 	private String description;
+	
 	public Post(User author, String title, String description) {
-		super();
 		this.author = author;
 		this.title = title;
 		this.description = description;
